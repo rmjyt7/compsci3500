@@ -12,6 +12,7 @@
 #define T_UNKNOWN   3
 #define T_FOO       4
 #define T_LAMBDA    5
+
 int numLines = 0;
 
 void printTokenInfo(const char* tokenType, char* lexeme);
