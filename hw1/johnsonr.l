@@ -46,6 +46,22 @@ STRCONST          \"(.*)\"
         printTokenInfo("PRINT", yytext);
         return T_INTCONST;
       }
+"nil" {
+        printTokenInfo("NIL", yytext);
+        return T_INTCONST;
+      }
+"and" {
+        printTokenInfo("AND", yytext);
+        return T_INTCONST;
+      }
+"or"  {
+        printTokenInfo("OR", yytext);
+        return T_INTCONST;
+      }
+"not" {
+        printTokenInfo("NOT", yytext);
+        return T_INTCONST;
+      }
 "if"                 {
         printTokenInfo("IF", yytext);
         return T_INTCONST;
@@ -81,6 +97,10 @@ STRCONST          \"(.*)\"
         printTokenInfo("MULT", yytext);
         return T_INTCONST;
       }
+"/="  {
+        printTokenInfo("NE", yytext);
+        return T_INTCONST;
+      }
 "/"               {
         printTokenInfo("DIV", yytext);
         return T_INTCONST;
@@ -103,6 +123,10 @@ STRCONST          \"(.*)\"
       }
 ">"   {
         printTokenInfo("GT", yytext);
+        return T_INTCONST;
+      }
+"="   {
+        printTokenInfo("EQ", yytext);
         return T_INTCONST;
       }
 {COMMENT}         {
