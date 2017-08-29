@@ -85,6 +85,26 @@ STRCONST          \"(.*)\"
         printTokenInfo("DIV", yytext);
         return T_INTCONST;
       }
+"t"                {
+        printTokenInfo("T", yytext);
+        return T_INTCONST;
+      }
+"<="  {
+        printTokenInfo("LE", yytext);
+        return T_INTCONST;
+      }
+">="  {
+        printTokenInfo("GE", yytext);
+        return T_INTCONST;
+      }
+"<"   {
+        printTokenInfo("LT", yytext);
+        return T_INTCONST;
+      }
+">"   {
+        printTokenInfo("GT", yytext);
+        return T_INTCONST;
+      }
 {COMMENT}         {
         return T_INTCONST;
 }
