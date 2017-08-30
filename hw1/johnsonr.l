@@ -168,7 +168,6 @@ int yywrap(void) { return 1; }
 int main(void) {
   while ( yylex() ) ;  // Keep processing tokens until 0 returned
 
-  printf("Processed %d lines\n", numLines);
   return 0;
 }
 
