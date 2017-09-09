@@ -57,6 +57,53 @@ N_EXPR        : T_INTCONST
                     printRule("EXPR", "foo IDENT_LIST INTCONST_LIST");
                   }
               ;
-N_IDENT_LIST  : /* epsilon */
+N_IDENT_LIST  : /* lambda */
                   {
                     printRule("IDENT_LIST", "epsilon");
+                  }
+              | N_IDENT_LIST T_IDENT
+                  {
+                    printRule("IDENT_LIST", "IDENT_LIST IDENT");
+                  }
+              ;
+N_INTCONST_LIST : T_INTCONST
+                {
+                  printRule("INTCONST_LIST", "INTCONST");
+                }
+                | N_INTCONST_LIST T_INTCONST
+                {
+                printRule("INTCONST_LIST", "INTCONST_LIST INTCONST");
+                }
+                ;
+%%
+
+#include "lex.yy.c"
+extern FILE *yyin;
+
+void printRule(const char *lhs, const char *rhs)
+{
+  printf("%s -> %s\n", lhs, rhs);
+  return;
+}
+
+int yyerror(const char *s)
+{
+  printf("%s\n", s);
+  return(1);
+}
+
+void printTokenInfo(const char* tokenType, const char* lexeme)
+{
+  printf("TOKEN: %s LEXEME: %s\n", tokenType, lexeme);
+}
+
+int main()
+{
+  do
+  {
+    yyparse();
+  } while (!feof(yyin));
+
+  printf("%d lines processed\n", numLines);
+  return(0);
+}
